@@ -1,0 +1,21 @@
+version: '3'
+services:
+  mssql:
+    image: microsoft/mssql-server-linux
+    container_name: "mssql"
+    networks: 
+      - local-network
+    ports:
+      - "1433:1433"
+    restart: always   
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=example123!   
+      - MSSQL_PID=Developer
+    volumes:
+      - mssql-volumes:/var/opt/mssql
+networks: 
+  local-network:
+    driver: bridge
+volumes:
+  mssql-volumes:
